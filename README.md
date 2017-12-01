@@ -1,6 +1,6 @@
 # adventOfCode2017
 
-# Week 1: WILL BE MOVING THIS TO ITS OWN FILE WHEN I GET HOME
+`# Week 1: WILL BE MOVING THIS TO ITS OWN FILE WHEN I GET HOME
 # Part 1
 sum = 0
 lastChar=myString[len(myString)-1]
@@ -19,4 +19,4 @@ for a in range(len(myStringFirstHalf)):
   if myStringFirstHalf[a] == myStringSecondHalf[a]:
     sum2 += 2*int(myStringFirstHalf[a])
     
-print sum2
+print sum2`
