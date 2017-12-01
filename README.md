@@ -8,9 +8,9 @@
 `  if char == lastChar:`
 `    sum += int(lastChar)`
 `  lastChar = char`
-`  `
+
 `print sum`
-``
+
 `# Part 2`
 `sum2 = 0`
 `myStringFirstHalf = myString[:len(myString)/2]`
@@ -18,5 +18,5 @@
 `for a in range(len(myStringFirstHalf)):`
 `  if myStringFirstHalf[a] == myStringSecondHalf[a]:`
 `    sum2 += 2*int(myStringFirstHalf[a])`
-`    `
+
 `print sum2`
