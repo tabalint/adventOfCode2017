@@ -47,12 +47,24 @@ def day3():
             return detectSpiralLevel(n+2, target)
 
     def howFarFromACorner(n, target):
-        for i in range(1, 5):
-            if target > pow(n, 2) - i*(n-1):
-                return target - (pow(n, 2) - i*(n-1))
+        corners = [pow(n, 2) - i*(n-1) for i in range(0, 5)]
+        return min(map(lambda x: abs(target-x), corners))
 
-    n = detectSpiralLevel(3, 1024)
-    # Have to cut n by half+0.5 n represents the corner/level
-    print str(2*math.ceil(n/2) - howFarFromACorner(n, 1024))
+    # Part 1
+    target = 312051
+    n = detectSpiralLevel(3, target)
+    # Have to cut n by half+0.5, n represents the corner/level
+    print str(2*math.ceil(n/2) - howFarFromACorner(n, target))
+    
+    
+def day4():
+    with open('day4.tsv') as f:
+        data = f.readlines()
+        f.close()
 
-day3()
+    # Part 1
+    validity = map(lambda x: len(set((x.split()))) == len(x.split()), data)
+    print sum(1 for x in validity if x)
+
+    # Part 2
+
