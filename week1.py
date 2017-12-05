@@ -67,6 +67,15 @@ def day4():
     print sum(1 for x in validity if x)
 
     # Part 2
+    def moreValidity(row):
+        for i in range(len(row)-1):
+            for j in range(i+1, len(row)):
+                if len(row[i]) == len(row[j]) and sorted(row[i]) == sorted(row[j]):
+                       return False
+        return True
+
+    validity = map(lambda x: moreValidity(x.split()), data)
+    print sum(1 for x in validity if x)
 
 
 def day5():
