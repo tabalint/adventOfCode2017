@@ -68,3 +68,28 @@ def day4():
 
     # Part 2
 
+
+def day5():
+    with open('day5input.csv') as f:
+        rawData = f.readlines()
+        f.close()
+    data = [int(x) for x in rawData]
+
+    # Parts 1 and 2: For part 1, set offsetLimit to 999999, for part 2, set to 3
+    offsetLimit = 3
+    curIndex, numSteps = 0, 0
+    state = True
+    while state:
+        try:
+            n = data[curIndex]
+            if n >= offsetLimit:
+                data[curIndex] = n-1
+            else:
+                data[curIndex] = n+1
+            curIndex += n
+            numSteps += 1
+        except Exception as e:
+            state = False
+            print numSteps
+            print e
+
