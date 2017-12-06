@@ -102,3 +102,40 @@ def day5():
             print numSteps
             print e
 
+
+def day6():
+    data = [4,10,4,1,8,4,9,14,5,1,14,15,0,15,3,5]
+
+    # Parts 1 & 2
+    # Fn to distribute the values from a cell to the rest of the cells
+    def redistribute(array, amountLeft, curIndex):
+        array[curIndex] +=  1
+        amountLeft -= 1
+        if amountLeft > 0:
+            return redistribute(array, amountLeft, (curIndex+1) % len(array))
+        else:
+            return array
+
+    def selectDonorBank(array):
+        maxVal = max(array)
+        return min([i for i, j in enumerate(array) if j == maxVal])
+
+    oldLists = []
+    oldLists.append(list(data)) # list(data) required everywhere so we're copying, not referencing
+    state = True
+    itr = 0
+
+    while state:
+        index = selectDonorBank(data)
+        toDistribute = data[index]
+        data[index] = 0
+        data = list(redistribute(data, toDistribute, (index + 1) % len(data)))
+        itr += 1
+        if data in oldLists:
+            state = False
+            print "Loop started on iteration " + str([i for i, j in enumerate(oldLists) if j == data])
+        else:
+            oldLists.append(list(data))
+
+    print "Loop detected on iteration " + str(itr)
+
