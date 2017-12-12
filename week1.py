@@ -139,3 +139,44 @@ def day6():
 
     print "Loop detected on iteration " + str(itr)
 
+
+def day7():
+    def cleandata(row):
+        if len(row) < 3:
+            return (row[0], None)
+        else:
+            return (row[0], row[3:])
+
+
+    def findTowers(data, rows):
+        kill = []
+        print rows
+        for val in rows:
+            if val in data.keys():
+                kill += [val]
+            if val[:-1] in data.keys(): # I AM LAZY AND DO NOT WANT TO STRIP COMMAS
+                kill += [val[:-1]]
+        return data, kill
+
+    with open('day7input.txt') as f:
+        rawData = f.readlines()
+        f.close()
+    data = dict(cleandata(x.split()) for x in rawData)
+
+    while len(data) > 3:
+        keysToKill = []
+        for key, value in data.iteritems():
+            if value is None:
+                keysToKill += [key]
+            else:
+                data, kill = findTowers(data, value)
+                keysToKill += kill
+
+        for elem in set(keysToKill):
+            data.pop(elem)
+        print keysToKill
+    print data
+
+
+
+day7()
