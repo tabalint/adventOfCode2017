@@ -75,9 +75,9 @@ def day12():
     plt.axis('off')
     fig = plt.figure(1)
     pos = nx.nx_pydot.graphviz_layout(G, prog='neato')
-    nx.draw(G, pos, with_labels=True, node_size=5, width=1)
+    nx.draw(G, pos, with_labels=True, node_size=5, width=1, font_size=8)
     plt.savefig("graph.png", dpi=500, facecolor='w', edgecolor='w', papertype=None, format=None,
-                transparent=False, bbox_inches=None)
+                transparent=False, bbox_inches='tight')
 
     print "Graph done!"
 
